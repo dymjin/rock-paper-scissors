@@ -1,1 +1,1 @@
-# rock-papper-scissors
+A javascript beginner project. 
