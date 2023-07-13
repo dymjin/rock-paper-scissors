@@ -1,3 +1,36 @@
+let game = (rounds) => {
+    let computerScore = 0;
+    let playerScore = 0;
+    let round = 1;
+    //loop through rounds
+    for (let i = 0; i < rounds; i++) {
+        let playerSelection = prompt("Rock, paper or scissors?");
+        let computerSelection = getComputerChoice();
+        console.log(`ROUND: ${round}`);
+        //log player + computer choices
+        console.log(`YOU chose: ${playerSelection.toLowerCase()}`);
+        console.log(`COMPUTER chose: ${computerSelection}`);
+        let winnerRound = playRound(playerSelection, computerSelection);
+
+        //determine who wins each round
+        if (winnerRound === "player") {
+            playerScore++;
+            round++;
+        }
+
+        else if (winnerRound === "computer") {
+            computerScore++;
+            round++;
+        }
+        else {
+            console.log("Invalid choice entered.");
+            round++;
+        }
+        console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
+    }
+}
+
+
 //get computer's choice
 let getComputerChoice = () => {
     let randomNumGen = (min, max) => {
@@ -15,7 +48,7 @@ let getComputerChoice = () => {
     }
     return choice;
 }
-// compare playerSelection with computerSelection and return who wins
+//compare playerSelection with computerSelection and return who wins
 let playRound = (playerSelection, computerSelection) => {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
@@ -52,13 +85,5 @@ let playRound = (playerSelection, computerSelection) => {
         }
     }
 }
-//log player + computer choices
-let computerSelection = getComputerChoice();
-let playerSelection = "SciSsoRs"
-console.log(`player's choice: ${playerSelection.toLowerCase()}`);
-console.log(`computer's choice: ${computerSelection}`);
 
-playRound(playerSelection, computerSelection);
-
-
-
+game(5);
