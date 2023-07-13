@@ -1,5 +1,3 @@
-// function to start each game
-
 //get computer's choice
 let getComputerChoice = () => {
     let randomNumGen = (min, max) => {
@@ -17,7 +15,7 @@ let getComputerChoice = () => {
     }
     return choice;
 }
-// compare playerSelection with computerSelection and see who wins
+// compare playerSelection with computerSelection and return who wins
 let playRound = (playerSelection, computerSelection) => {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
@@ -54,10 +52,11 @@ let playRound = (playerSelection, computerSelection) => {
         }
     }
 }
+//log player + computer choices
 let computerSelection = getComputerChoice();
-let playerSelection = "rock"
-console.log(playerSelection);
-console.log(computerSelection);
+let playerSelection = "SciSsoRs"
+console.log(`player's choice: ${playerSelection.toLowerCase()}`);
+console.log(`computer's choice: ${computerSelection}`);
 
 playRound(playerSelection, computerSelection);
 
