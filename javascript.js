@@ -22,11 +22,25 @@ let game = (rounds) => {
             computerScore++;
             round++;
         }
+        else if (winnerRound === "none") {
+            round++;
+        }
         else {
-            console.log("Invalid choice entered.");
+            console.log("INVALID CHOICE ENTERED");
             round++;
         }
         console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
+        console.log(``);
+    }
+    // who wins overall
+    if (playerScore < computerScore) {
+        console.log(`COMPUTER WINS; SCORE: ${computerScore} / ${rounds}`);
+    } else if (playerScore > computerScore) {
+        console.log(`PLAYER WINS; SCORE: ${playerScore} / ${rounds}`);
+    } else if (playerScore === computerScore && playerScore !== 0 && computerScore !== 0) {
+        console.log("NOBODY WON; TIED");
+    } else {
+        console.log("NOBODY WON; INVALID CHOICES ENTERED");
     }
 }
 
