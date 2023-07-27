@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+}
+.container {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    gap: 15px;
+}
+/* 
+button {
+    width: 100px; 
+     padding: 0 10px;
+} */
