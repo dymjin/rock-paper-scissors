@@ -1,48 +1,48 @@
-let game = (rounds) => {
-    let computerScore = 0;
-    let playerScore = 0;
-    let round = 1;
-    //loop through rounds
-    for (let i = 0; i < rounds; i++) {
-        let playerSelection = prompt("Rock, paper or scissors?");
-        let computerSelection = getComputerChoice();
-        console.log(`ROUND: ${round}`);
-        //log player + computer choices
-        console.log(`YOU chose: ${playerSelection.toLowerCase()}`);
-        console.log(`COMPUTER chose: ${computerSelection}`);
-        let winnerRound = playRound(playerSelection, computerSelection);
+// let game = () => {
+//     let computerScore = 0;
+//     let playerScore = 0;
+//     let round = 1;
+//     //loop through rounds
+//     // for (let i = 0; i < rounds; i++) {
+//     // let playerSelection =;
+//     let computerSelection = getComputerChoice();
+//     console.log(`ROUND: ${round}`);
+//     //log player + computer choices
+//     console.log(`YOU chose: ${playerSelection.toLowerCase()}`);
+//     console.log(`COMPUTER chose: ${computerSelection}`);
+//     let winnerRound = playRound(playerSelection, computerSelection);
 
-        //determine who wins each round
-        if (winnerRound === "player") {
-            playerScore++;
-            round++;
-        }
+//     //determine who wins each round
+//     if (winnerRound === "player") {
+//         playerScore++;
+//         round++;
+//     }
 
-        else if (winnerRound === "computer") {
-            computerScore++;
-            round++;
-        }
-        else if (winnerRound === "none") {
-            round++;
-        }
-        else {
-            console.log("INVALID CHOICE ENTERED");
-            round++;
-        }
-        console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
-        console.log(``);
-    }
-    // who wins overall
-    if (playerScore < computerScore) {
-        console.log(`COMPUTER WINS; SCORE: ${computerScore} / ${rounds}`);
-    } else if (playerScore > computerScore) {
-        console.log(`PLAYER WINS; SCORE: ${playerScore} / ${rounds}`);
-    } else if (playerScore === computerScore && playerScore !== 0 && computerScore !== 0) {
-        console.log("NOBODY WON; TIED");
-    } else {
-        console.log("NOBODY WON; INVALID CHOICES ENTERED");
-    }
-}
+//     else if (winnerRound === "computer") {
+//         computerScore++;
+//         round++;
+//     }
+//     else if (winnerRound === "none") {
+//         round++;
+//     }
+//     else {
+//         console.log("INVALID CHOICE ENTERED");
+//         round++;
+//     }
+//     console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
+//     console.log(``);
+
+//     // who wins overall
+//     if (playerScore < computerScore) {
+//         console.log(`COMPUTER WINS; SCORE: ${computerScore} / ${rounds}`);
+//     } else if (playerScore > computerScore) {
+//         console.log(`PLAYER WINS; SCORE: ${playerScore} / ${rounds}`);
+//     } else if (playerScore === computerScore && playerScore !== 0 && computerScore !== 0) {
+//         console.log("NOBODY WON; TIED");
+//     } else {
+//         console.log("NOBODY WON; INVALID CHOICES ENTERED");
+//     }
+// }
 
 
 //get computer's choice
@@ -63,7 +63,7 @@ let getComputerChoice = () => {
     return choice;
 }
 //compare playerSelection with computerSelection and return who wins
-let playRound = (playerSelection, computerSelection) => {
+let compareChoices = (playerSelection, computerSelection) => {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
             console.log("Tie, rock can't beat rock.");
@@ -100,4 +100,9 @@ let playRound = (playerSelection, computerSelection) => {
     }
 }
 
-game(5);
+// let playRound = () => {
+
+// }
+// const btns = document.querySelectorAll('button');
+// btns.forEach(btn => btn.addEventListener('click', playRound()));
+// game();
