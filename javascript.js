@@ -2,10 +2,6 @@
 //     let computerScore = 0;
 //     let playerScore = 0;
 //     let round = 1;
-//     //loop through rounds
-//     // for (let i = 0; i < rounds; i++) {
-//     // let playerSelection =;
-//     let computerSelection = getComputerChoice();
 //     console.log(`ROUND: ${round}`);
 //     //log player + computer choices
 //     console.log(`YOU chose: ${playerSelection.toLowerCase()}`);
@@ -63,7 +59,7 @@ let getComputerChoice = () => {
     return choice;
 }
 //compare playerSelection with computerSelection and return who wins
-let compareChoices = (playerSelection, computerSelection) => {
+function compareChoices(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
             console.log("Tie, rock can't beat rock.");
@@ -99,10 +95,10 @@ let compareChoices = (playerSelection, computerSelection) => {
         }
     }
 }
-
-// let playRound = () => {
-
-// }
-// const btns = document.querySelectorAll('button');
-// btns.forEach(btn => btn.addEventListener('click', playRound()));
-// game();
+let playRound = (playerSelection, computerSelection) => {
+    return console.log(compareChoices(playerSelection, computerSelection));
+}
+computerSelection = getComputerChoice();
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
+buttons.forEach(button => button.addEventListener('click', () => playRound(playerSelection, computerSelection)));
