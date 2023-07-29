@@ -95,10 +95,11 @@ function compareChoices(playerSelection, computerSelection) {
         }
     }
 }
+computerSelection = "";
 let playRound = (playerSelection, computerSelection) => {
+    computerSelection = getComputerChoice();
     return console.log(compareChoices(playerSelection, computerSelection));
 }
-computerSelection = getComputerChoice();
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
 buttons.forEach(button => button.addEventListener('click', () => playRound(playerSelection, computerSelection)));
