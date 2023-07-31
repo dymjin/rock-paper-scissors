@@ -62,48 +62,70 @@ let getComputerChoice = () => {
 function compareChoices(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
-            div.textContent = "Tie, rock can't beat rock.";
+            divResults.textContent = "Tie, rock can't beat rock.";
             return winner = "none";
         } else if (computerSelection === "paper") {
-            div.textContent = "You lose, paper beats rock.";
+            divResults.textContent = "You lose, paper beats rock.";
             return winner = "computer";
         } else {
-            div.textContent = "You win, rock beats scissors.";
+            divResults.textContent = "You win, rock beats scissors.";
             return winner = "player";
         }
     } else if (playerSelection.toLowerCase() === "paper") {
         if (computerSelection === "rock") {
-            div.textContent = "You win, paper beats rock.";
+            divResults.textContent = "You win, paper beats rock.";
             return winner = "player";
         } else if (computerSelection === "paper") {
-            div.textContent = "Tie, paper can't beat paper.";
+            divResults.textContent = "Tie, paper can't beat paper.";
             return winner = "none";
         } else {
-            div.textContent = "You lose, scissors beat paper.";
+            divResults.textContent = "You lose, scissors beat paper.";
             return winner = "computer";
         }
     } else if (playerSelection.toLowerCase() === "scissors") {
         if (computerSelection === "paper") {
-            div.textContent = "You win, scissors beat paper.";
+            divResults.textContent = "You win, scissors beat paper.";
             return winner = "player";
         } else if (computerSelection === "rock") {
-            div.textContent = "You lose, rock beats scissors.";
+            divResults.textContent = "You lose, rock beats scissors.";
             return winner = "computer";
         } else {
-            div.textContent = "Tie, scissors can't beat scissors.";
+            divResults.textContent = "Tie, scissors can't beat scissors.";
             return winner = "none";
         }
     }
 }
-computerSelection = "";
-const div = document.createElement('div');
+let computerSelection = "";
+const selections = document.createElement('div');
+const divResults = document.createElement('div');
 const divContainer = document.querySelector('.container');
 
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
-    divContainer.appendChild(div);
+    selections.textContent = `${playerSelection} vs ${computerSelection}`;
+    divContainer.appendChild(selections);
+    divContainer.appendChild(divResults);
     return compareChoices(playerSelection, computerSelection);
 }
+
+// if (playRound === "player") {
+//     playerScore++;
+//     round++;
+// }
+
+// else if (winnerRound === "computer") {
+//     computerScore++;
+//     round++;
+// }
+// else if (winnerRound === "none") {
+//     round++;
+// }
+// else {
+//     console.log("INVALID CHOICE ENTERED");
+//     round++;
+// }
+// console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
 buttons.forEach(button => button.addEventListener('click', () => playRound(playerSelection, computerSelection)));
