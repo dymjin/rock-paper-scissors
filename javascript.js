@@ -104,11 +104,6 @@ let playerScore = 0;
 
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
-    selections.textContent = `${playerSelection} vs ${computerSelection}`;
-    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`
-    divContainer.appendChild(selections);
-    divContainer.appendChild(divResults);
-    divContainer.appendChild(scores);
     let winner = compareChoices(playerSelection, computerSelection);
     if (winner === "player") {
         playerScore++;
@@ -117,6 +112,12 @@ let playRound = (playerSelection, computerSelection) => {
     else if (winner === "computer") {
         computerScore++;
     }
+    selections.textContent = `${playerSelection} vs ${computerSelection}`;
+    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`
+    divContainer.appendChild(selections);
+    divContainer.appendChild(divResults);
+    divContainer.appendChild(scores);
+
 }
 
 // if (playRound === "player") {
