@@ -97,11 +97,11 @@ function compareChoices(playerSelection, computerSelection) {
 }
 computerSelection = "";
 const div = document.createElement('div');
-const body = document.querySelector('body');
+const divContainer = document.querySelector('.container');
 
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
-    body.appendChild(div);
+    divContainer.appendChild(div);
     return compareChoices(playerSelection, computerSelection);
 }
 const buttons = document.querySelectorAll('button');
