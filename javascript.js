@@ -62,43 +62,47 @@ let getComputerChoice = () => {
 function compareChoices(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
-            console.log("Tie, rock can't beat rock.");
+            div.textContent = "Tie, rock can't beat rock.";
             return winner = "none";
         } else if (computerSelection === "paper") {
-            console.log("You lose, paper beats rock.");
+            div.textContent = "You lose, paper beats rock.";
             return winner = "computer";
         } else {
-            console.log("You win, rock beats scissors.");
+            div.textContent = "You win, rock beats scissors.";
             return winner = "player";
         }
     } else if (playerSelection.toLowerCase() === "paper") {
         if (computerSelection === "rock") {
-            console.log("You win, paper beats rock.");
+            div.textContent = "You win, paper beats rock.";
             return winner = "player";
         } else if (computerSelection === "paper") {
-            console.log("Tie, paper can't beat paper.");
+            div.textContent = "Tie, paper can't beat paper.";
             return winner = "none";
         } else {
-            console.log("You lose, scissors beat paper.");
+            div.textContent = "You lose, scissors beat paper.";
             return winner = "computer";
         }
     } else if (playerSelection.toLowerCase() === "scissors") {
         if (computerSelection === "paper") {
-            console.log("You win, scissors beat paper.");
+            div.textContent = "You win, scissors beat paper.";
             return winner = "player";
         } else if (computerSelection === "rock") {
-            console.log("You lose, rock beats scissors.");
+            div.textContent = "You lose, rock beats scissors.";
             return winner = "computer";
         } else {
-            console.log("Tie, scissors can't beat scissors.");
+            div.textContent = "Tie, scissors can't beat scissors.";
             return winner = "none";
         }
     }
 }
 computerSelection = "";
+const div = document.createElement('div');
+const body = document.querySelector('body');
+
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
-    return console.log(compareChoices(playerSelection, computerSelection));
+    body.appendChild(div);
+    return compareChoices(playerSelection, computerSelection);
 }
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
