@@ -1,6 +1,5 @@
 // let game = () => {
-//     let computerScore = 0;
-//     let playerScore = 0;
+//    
 //     let round = 1;
 //     console.log(`ROUND: ${round}`);
 //     //log player + computer choices
@@ -96,16 +95,28 @@ function compareChoices(playerSelection, computerSelection) {
     }
 }
 let computerSelection = "";
+const scores = document.createElement('div');
 const selections = document.createElement('div');
 const divResults = document.createElement('div');
 const divContainer = document.querySelector('.container');
+let computerScore = 0;
+let playerScore = 0;
 
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
     selections.textContent = `${playerSelection} vs ${computerSelection}`;
+    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`
     divContainer.appendChild(selections);
     divContainer.appendChild(divResults);
-    return compareChoices(playerSelection, computerSelection);
+    divContainer.appendChild(scores);
+    let winner = compareChoices(playerSelection, computerSelection);
+    if (winner === "player") {
+        playerScore++;
+    }
+
+    else if (winner === "computer") {
+        computerScore++;
+    }
 }
 
 // if (playRound === "player") {
