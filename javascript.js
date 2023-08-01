@@ -1,44 +1,12 @@
-// let game = () => {
-//    
-//     let round = 1;
-//     console.log(`ROUND: ${round}`);
-//     //log player + computer choices
-//     console.log(`YOU chose: ${playerSelection.toLowerCase()}`);
-//     console.log(`COMPUTER chose: ${computerSelection}`);
-//     let winnerRound = playRound(playerSelection, computerSelection);
-
-//     //determine who wins each round
-//     if (winnerRound === "player") {
-//         playerScore++;
-//         round++;
-//     }
-
-//     else if (winnerRound === "computer") {
-//         computerScore++;
-//         round++;
-//     }
-//     else if (winnerRound === "none") {
-//         round++;
-//     }
-//     else {
-//         console.log("INVALID CHOICE ENTERED");
-//         round++;
-//     }
-//     console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
-//     console.log(``);
-
-//     // who wins overall
-//     if (playerScore < computerScore) {
-//         console.log(`COMPUTER WINS; SCORE: ${computerScore} / ${rounds}`);
-//     } else if (playerScore > computerScore) {
-//         console.log(`PLAYER WINS; SCORE: ${playerScore} / ${rounds}`);
-//     } else if (playerScore === computerScore && playerScore !== 0 && computerScore !== 0) {
-//         console.log("NOBODY WON; TIED");
-//     } else {
-//         console.log("NOBODY WON; INVALID CHOICES ENTERED");
-//     }
-// }
-
+let computerSelection = "";
+const choiceList = document.querySelector('.choice-list');
+const winnerOverall = document.createElement('div');
+const scores = document.createElement('div');
+const selections = document.createElement('div');
+const divResults = document.createElement('div');
+const divContainer = document.querySelector('.container');
+let computerScore = 0;
+let playerScore = 0;
 
 let getComputerChoice = () => {
     let randomNumGen = (min, max) => {
@@ -57,7 +25,7 @@ let getComputerChoice = () => {
     return choice;
 }
 
-function compareChoices(playerSelection, computerSelection) {
+let compareChoices = (playerSelection, computerSelection) => {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
             divResults.textContent = "Tie, rock can't beat rock.";
@@ -94,31 +62,23 @@ function compareChoices(playerSelection, computerSelection) {
     }
 }
 
-let computerSelection = "";
-const choiceList = document.querySelector('.choice-list');
-const winnerOverall = document.createElement('div');
-const scores = document.createElement('div');
-const selections = document.createElement('div');
-const divResults = document.createElement('div');
-const divContainer = document.querySelector('.container');
-let computerScore = 0;
-let playerScore = 0;
-
 let playRound = (playerSelection, computerSelection) => {
     computerSelection = getComputerChoice();
     let winner = compareChoices(playerSelection, computerSelection);
+
     if (winner === "player") {
         playerScore++;
     }
-
     else if (winner === "computer") {
         computerScore++;
     }
-    selections.textContent = `${playerSelection} vs ${computerSelection}`;
-    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`;
+
+    selections.textContent = `${playerSelection[0].toUpperCase() + playerSelection.slice(1)} vs ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`;
+    scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
     divContainer.appendChild(selections);
     divContainer.appendChild(divResults);
     divContainer.appendChild(scores);
+
     if (playerScore === 5) {
         winnerOverall.textContent = "You win, I am the inferior being.";
         buttons.forEach(button => button.disabled = true);
@@ -129,13 +89,8 @@ let playRound = (playerSelection, computerSelection) => {
         resetButton.addEventListener('click', () => {
             resetGame();
             choiceList.removeChild(resetButton);
-            divContainer.removeChild(selections);
-            divContainer.removeChild(divResults);
-            divContainer.removeChild(scores);
-            divContainer.removeChild(winnerOverall);
             buttons.forEach(button => button.disabled = false);
         });
-
     } else if (computerScore === 5) {
         winnerOverall.textContent = "I win, better luck next time.";
         buttons.forEach(button => button.disabled = true);
@@ -146,19 +101,18 @@ let playRound = (playerSelection, computerSelection) => {
         resetButton.addEventListener('click', () => {
             resetGame();
             choiceList.removeChild(resetButton);
-            divContainer.removeChild(selections);
-            divContainer.removeChild(divResults);
-            divContainer.removeChild(scores);
-            divContainer.removeChild(winnerOverall);
             buttons.forEach(button => button.disabled = false);
         });
-
     }
 }
 
 let resetGame = () => {
     playerScore = 0;
     computerScore = 0;
+    divContainer.removeChild(selections);
+    divContainer.removeChild(divResults);
+    divContainer.removeChild(scores);
+    divContainer.removeChild(winnerOverall);
 }
 
 const buttons = document.querySelectorAll('button');
