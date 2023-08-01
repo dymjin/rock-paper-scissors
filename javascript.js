@@ -40,7 +40,6 @@
 // }
 
 
-//get computer's choice
 let getComputerChoice = () => {
     let randomNumGen = (min, max) => {
         min = Math.ceil(min);
@@ -57,7 +56,7 @@ let getComputerChoice = () => {
     }
     return choice;
 }
-//compare playerSelection with computerSelection and return who wins
+
 function compareChoices(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection === "rock") {
@@ -94,7 +93,10 @@ function compareChoices(playerSelection, computerSelection) {
         }
     }
 }
+
 let computerSelection = "";
+const choiceList = document.querySelector('.choice-list');
+const winnerOverall = document.createElement('div');
 const scores = document.createElement('div');
 const selections = document.createElement('div');
 const divResults = document.createElement('div');
@@ -113,30 +115,51 @@ let playRound = (playerSelection, computerSelection) => {
         computerScore++;
     }
     selections.textContent = `${playerSelection} vs ${computerSelection}`;
-    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`
+    scores.textContent = `player: ${playerScore} | computer: ${computerScore}`;
     divContainer.appendChild(selections);
     divContainer.appendChild(divResults);
     divContainer.appendChild(scores);
+    if (playerScore === 5) {
+        winnerOverall.textContent = "You win, I am the inferior being.";
+        buttons.forEach(button => button.disabled = true);
+        divContainer.appendChild(winnerOverall);
+        const resetButton = document.createElement('button');
+        resetButton.textContent = "Reset";
+        choiceList.appendChild(resetButton);
+        resetButton.addEventListener('click', () => {
+            resetGame();
+            choiceList.removeChild(resetButton);
+            divContainer.removeChild(selections);
+            divContainer.removeChild(divResults);
+            divContainer.removeChild(scores);
+            divContainer.removeChild(winnerOverall);
+            buttons.forEach(button => button.disabled = false);
+        });
 
+    } else if (computerScore === 5) {
+        winnerOverall.textContent = "I win, better luck next time.";
+        buttons.forEach(button => button.disabled = true);
+        divContainer.appendChild(winnerOverall);
+        const resetButton = document.createElement('button');
+        resetButton.textContent = "Reset";
+        choiceList.appendChild(resetButton);
+        resetButton.addEventListener('click', () => {
+            resetGame();
+            choiceList.removeChild(resetButton);
+            divContainer.removeChild(selections);
+            divContainer.removeChild(divResults);
+            divContainer.removeChild(scores);
+            divContainer.removeChild(winnerOverall);
+            buttons.forEach(button => button.disabled = false);
+        });
+
+    }
 }
 
-// if (playRound === "player") {
-//     playerScore++;
-//     round++;
-// }
-
-// else if (winnerRound === "computer") {
-//     computerScore++;
-//     round++;
-// }
-// else if (winnerRound === "none") {
-//     round++;
-// }
-// else {
-//     console.log("INVALID CHOICE ENTERED");
-//     round++;
-// }
-// console.log(`PLAYER: ${playerScore}            COMPUTER: ${computerScore}`);
+let resetGame = () => {
+    playerScore = 0;
+    computerScore = 0;
+}
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
