@@ -8,21 +8,17 @@ const divContainer = document.querySelector('.container');
 let computerScore = 0;
 let playerScore = 0;
 
+let randomNumGen = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 let getComputerChoice = () => {
-    let randomNumGen = (min, max) => {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min);
-    }
     let choice = 0;
-    if (randomNumGen(1, 4) === 1) {
-        choice = "rock";
-    } else if (randomNumGen(1, 4) === 2) {
-        choice = "paper"
-    } else {
-        choice = "scissors"
-    }
-    return choice;
+    const choiceArr = ["rock", "paper", "scissors"];
+    return choice = choiceArr[randomNumGen(1, 4) - 1];
+
 }
 
 let compareChoices = (playerSelection, computerSelection) => {
