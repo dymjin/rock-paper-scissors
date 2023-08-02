@@ -8,6 +8,16 @@ const divContainer = document.querySelector('.container');
 let computerScore = 0;
 let playerScore = 0;
 
+const resetButton = document.createElement('button');
+resetButton.textContent = "Reset";
+choiceList.appendChild(resetButton);
+resetButton.disabled = true;
+resetButton.addEventListener('click', () => {
+    resetGame();
+    buttons.forEach(button => button.disabled = false);
+    resetButton.disabled = true;
+});
+
 let randomNumGen = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -18,7 +28,6 @@ let getComputerChoice = () => {
     let choice = 0;
     const choiceArr = ["rock", "paper", "scissors"];
     return choice = choiceArr[randomNumGen(1, 4) - 1];
-
 }
 
 let compareChoices = (playerSelection, computerSelection) => {
@@ -75,42 +84,28 @@ let playRound = (playerSelection, computerSelection) => {
     divContainer.appendChild(divResults);
     divContainer.appendChild(scores);
 
-    if (playerScore === 5) {
+    if (playerScore === 5 || computerScore === 5) {
         winnerOverall.textContent = "You win, I am the inferior being.";
         buttons.forEach(button => button.disabled = true);
         divContainer.appendChild(winnerOverall);
-        const resetButton = document.createElement('button');
-        resetButton.textContent = "Reset";
-        choiceList.appendChild(resetButton);
-        resetButton.addEventListener('click', () => {
-            resetGame();
-            choiceList.removeChild(resetButton);
-            buttons.forEach(button => button.disabled = false);
-        });
-    } else if (computerScore === 5) {
-        winnerOverall.textContent = "I win, better luck next time.";
-        buttons.forEach(button => button.disabled = true);
-        divContainer.appendChild(winnerOverall);
-        const resetButton = document.createElement('button');
-        resetButton.textContent = "Reset";
-        choiceList.appendChild(resetButton);
-        resetButton.addEventListener('click', () => {
-            resetGame();
-            choiceList.removeChild(resetButton);
-            buttons.forEach(button => button.disabled = false);
-        });
     }
 }
 
 let resetGame = () => {
+    if (playerScore === 5 || computerScore === 5) {
+        divContainer.removeChild(winnerOverall);
+    }
     playerScore = 0;
     computerScore = 0;
     divContainer.removeChild(selections);
     divContainer.removeChild(divResults);
     divContainer.removeChild(scores);
-    divContainer.removeChild(winnerOverall);
+
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', () => playerSelection = button.id))
-buttons.forEach(button => button.addEventListener('click', () => playRound(playerSelection, computerSelection)));
+const buttons = document.querySelectorAll('button.selection');
+buttons.forEach(button => button.addEventListener('click', () => {
+    playerSelection = button.id;
+    playRound(playerSelection, computerSelection);
+    resetButton.disabled = false;
+}));
