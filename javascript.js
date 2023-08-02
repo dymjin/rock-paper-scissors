@@ -85,7 +85,12 @@ let playRound = (playerSelection, computerSelection) => {
     divContainer.appendChild(scores);
 
     if (playerScore === 5 || computerScore === 5) {
-        winnerOverall.textContent = "You win, I am the inferior being.";
+        if (playerScore === 5) {
+            winnerOverall.textContent = "You win, I am the inferior being.";
+        }
+        else {
+            winnerOverall.textContent = "I win, better luck next time.";
+        }
         buttons.forEach(button => button.disabled = true);
         divContainer.appendChild(winnerOverall);
     }
